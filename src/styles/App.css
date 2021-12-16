@@ -1,7 +1,15 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
 .App {
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
 }
 
@@ -16,17 +24,24 @@
 .parentForm {
     width: 80%;
     margin: .5rem;
-}
-
-.general {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
     background-color: lightgray;
     border-radius: 20px;
 }
 
-.general input {
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.section input {
     margin: 1rem;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 50%;
 }
