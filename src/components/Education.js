@@ -33,6 +33,9 @@ class Education extends Component {
             </label>
           </div>
         </div>
+        <button id='addEducation' className='btn'>
+          Add
+        </button>
       </div>
     );
   }

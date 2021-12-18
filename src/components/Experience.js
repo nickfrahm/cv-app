@@ -33,6 +33,9 @@ class Experience extends Component {
             </label>
           </div>
         </div>
+        <button id='addExperience' className='btn'>
+          Add
+        </button>
       </div>
     );
   }
