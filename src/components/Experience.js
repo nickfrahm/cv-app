@@ -32,10 +32,9 @@ class Experience extends Component {
               <input type='checkbox' name='present' />
             </label>
           </div>
+          <button className='btn addExperience'>Add</button>
+          <button className='btn deleteExperience del'>Delete</button>
         </div>
-        <button id='addExperience' className='btn'>
-          Add
-        </button>
       </div>
     );
   }

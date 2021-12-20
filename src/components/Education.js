@@ -32,10 +32,9 @@ class Education extends Component {
               <input type='checkbox' name='present' />
             </label>
           </div>
+          <button className='btn addEducation'>Add</button>
+          <button className='btn deleteEducation del'>Delete</button>
         </div>
-        <button id='addEducation' className='btn'>
-          Add
-        </button>
       </div>
     );
   }

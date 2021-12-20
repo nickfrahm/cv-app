@@ -5,8 +5,6 @@ class DisplayButton extends Component {
     return (
       <div className='displayType'>
         <button className='btn editForm'>Edit</button>
-        <p>or</p>
-        <button className='btn previewCV'>Preview</button>
       </div>
     );
   }
