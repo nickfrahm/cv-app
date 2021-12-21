@@ -5,6 +5,15 @@ import ParentForm from './components/ParentForm.js';
 import './styles/App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewType: 'edit',
+      general: { name: '', email: '', phoneNum: '' },
+      eduItems: [],
+      expItems: [],
+    };
+  }
   render() {
     return (
       <div className='App'>
