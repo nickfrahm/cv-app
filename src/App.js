@@ -13,7 +13,27 @@ class App extends Component {
       eduItems: [],
       expItems: [],
     };
+
+    this.handleInput = this.handleInput.bind(this);
+    this.handleAddEdu = this.handleAddEdu.bind(this);
+    this.handleAddExp = this.handleAddExp.bind(this);
   }
+
+  handleInput(e) {
+    const { name, value } = e.target;
+
+    this.setState({
+      //general[name]: [value],
+      ...this.state,
+    });
+  }
+
+  handleAddEdu(e) {
+    //
+  }
+
+  handleAddExp(e) {}
+
   render() {
     return (
       <div className='App'>
