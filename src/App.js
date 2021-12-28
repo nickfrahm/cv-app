@@ -9,7 +9,9 @@ class App extends Component {
     super(props);
     this.state = {
       viewType: 'edit',
-      general: { name: '', email: '', phoneNum: '' },
+      name: '',
+      email: '',
+      phoneNum: '',
       eduItems: [],
       expItems: [],
     };
@@ -23,8 +25,8 @@ class App extends Component {
     const { name, value } = e.target;
 
     this.setState({
-      //general[name]: [value],
       ...this.state,
+      name: [name],
     });
   }
 
@@ -39,7 +41,7 @@ class App extends Component {
       <div className='App'>
         <Header />
         <DisplayButton />
-        <ParentForm />
+        <ParentForm handleInput={this.handleInput} />
       </div>
     );
   }
