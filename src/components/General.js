@@ -6,7 +6,7 @@ class General extends Component {
   }
 
   render() {
-    const { handleInput } = this.props;
+    const { handleInput, name, email, phoneNumber } = this.props;
 
     return (
       <div className='section general'>
@@ -14,15 +14,30 @@ class General extends Component {
         <div className='inputs'>
           <label>
             Name:
-            <input type='text' name='name' onChange={handleInput} />
+            <input
+              type='text'
+              name='name'
+              onChange={handleInput}
+              value={name}
+            />
           </label>
           <label>
             Email:
-            <input type='text' name='email' onChange={handleInput} />
+            <input
+              type='text'
+              name='email'
+              onChange={handleInput}
+              value={email}
+            />
           </label>
           <label>
             Phone Number:
-            <input type='text' name='phoneNumber' onChange={handleInput} />
+            <input
+              type='text'
+              name='phoneNumber'
+              onChange={handleInput}
+              value={phoneNumber}
+            />
           </label>
         </div>
       </div>

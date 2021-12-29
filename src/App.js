@@ -20,6 +20,7 @@ class App extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleAddEdu = this.handleAddEdu.bind(this);
     this.handleAddExp = this.handleAddExp.bind(this);
+    this.handleClickView = this.handleClickView.bind(this);
   }
 
   handleInput(e) {
@@ -37,15 +38,35 @@ class App extends Component {
 
   handleAddExp(e) {}
 
+  handleClickView(e) {
+    e.preventDefault();
+
+    if (this.state.viewType === 'edit') {
+      this.setState({ ...this.state, viewType: 'preview' });
+    } else {
+      this.setState({ ...this.state, viewType: 'edit' });
+    }
+  }
+
   render() {
-    const { name, email, phoneNumber } = this.state;
+    const { name, email, phoneNumber, viewType } = this.state;
 
     return (
       <div className='App'>
         <Header />
-        <Preview name={name} email={email} phoneNumber={phoneNumber} />
-        <DisplayButton />
-        <ParentForm handleInput={this.handleInput} />
+
+        <DisplayButton handleClickView={this.handleClickView} type={viewType} />
+
+        {viewType === 'edit' ? (
+          <ParentForm
+            handleInput={this.handleInput}
+            name={name}
+            email={email}
+            phoneNumber={phoneNumber}
+          />
+        ) : (
+          <Preview name={name} email={email} phoneNumber={phoneNumber} />
+        )}
       </div>
     );
   }
