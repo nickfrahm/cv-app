@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DisplayButton from './components/DisplayButton.js';
 import Header from './components/Header.js';
 import ParentForm from './components/ParentForm.js';
+import Preview from './components/Preview.js';
 import './styles/App.css';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
       viewType: 'edit',
       name: '',
       email: '',
-      phoneNum: '',
+      phoneNumber: '',
       eduItems: [],
       expItems: [],
     };
@@ -26,7 +27,7 @@ class App extends Component {
 
     this.setState({
       ...this.state,
-      name: [name],
+      [name]: value,
     });
   }
 
@@ -37,9 +38,12 @@ class App extends Component {
   handleAddExp(e) {}
 
   render() {
+    const { name, email, phoneNumber } = this.state;
+
     return (
       <div className='App'>
         <Header />
+        <Preview name={name} email={email} phoneNumber={phoneNumber} />
         <DisplayButton />
         <ParentForm handleInput={this.handleInput} />
       </div>
