@@ -3,6 +3,7 @@ import DisplayButton from './components/DisplayButton.js';
 import Header from './components/Header.js';
 import ParentForm from './components/ParentForm.js';
 import Preview from './components/Preview.js';
+import uniqid from 'uniqid';
 import './styles/App.css';
 
 class App extends Component {
@@ -13,7 +14,17 @@ class App extends Component {
       name: '',
       email: '',
       phoneNumber: '',
-      eduItems: [],
+      eduItems: [
+        {
+          id: uniqid(),
+          school: '',
+          degreeType: '',
+          major: '',
+          from: '',
+          to: '',
+          isPresent: false,
+        },
+      ],
       expItems: [],
     };
 
@@ -49,7 +60,7 @@ class App extends Component {
   }
 
   render() {
-    const { name, email, phoneNumber, viewType } = this.state;
+    const { name, email, phoneNumber, viewType, eduItems } = this.state;
 
     return (
       <div className='App'>
@@ -63,6 +74,7 @@ class App extends Component {
             name={name}
             email={email}
             phoneNumber={phoneNumber}
+            eduItems={eduItems}
           />
         ) : (
           <Preview name={name} email={email} phoneNumber={phoneNumber} />
