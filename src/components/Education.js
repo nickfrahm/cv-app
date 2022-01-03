@@ -7,7 +7,7 @@ class Education extends Component {
   }
 
   render() {
-    const { eduItems } = this.props;
+    const { eduItems, handleEduInput } = this.props;
 
     return (
       <div className='section education'>
@@ -16,12 +16,14 @@ class Education extends Component {
           return (
             <EducationInfo
               key={edu.id}
+              id={edu.id}
               school={edu.school}
               degreeType={edu.degreeType}
               major={edu.major}
               from={edu.from}
               to={edu.to}
               isPresent={edu.isPresent}
+              handleEduInput={handleEduInput}
             />
           );
         })}

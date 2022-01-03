@@ -32,6 +32,7 @@ class App extends Component {
     this.handleAddEdu = this.handleAddEdu.bind(this);
     this.handleAddExp = this.handleAddExp.bind(this);
     this.handleClickView = this.handleClickView.bind(this);
+    this.handleEduInput = this.handleEduInput.bind(this);
   }
 
   handleInput(e) {
@@ -40,6 +41,16 @@ class App extends Component {
     this.setState({
       ...this.state,
       [name]: value,
+    });
+  }
+
+  handleEduInput(e) {
+    const { name, value, id } = e.target;
+    this.setState({
+      ...this.state,
+      eduItems: this.state.eduItems.map((el) =>
+        el.id === id ? { ...el, [name]: value } : el
+      ),
     });
   }
 
@@ -75,6 +86,7 @@ class App extends Component {
             email={email}
             phoneNumber={phoneNumber}
             eduItems={eduItems}
+            handleEduInput={this.handleEduInput}
           />
         ) : (
           <Preview name={name} email={email} phoneNumber={phoneNumber} />
