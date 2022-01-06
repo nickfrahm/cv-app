@@ -1,40 +1,35 @@
 import React, { Component } from 'react';
+import ExperienceInfo from './ExperienceInfo.js';
+import AddBtn from './AddBtn.js';
 
 class Experience extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { expItems, handleExpInput, handleAddExp, handleDelExp } = this.props;
+
     return (
       <div className='section experience'>
         <h2 className='sectionHeader'>Experience</h2>
-        <div className='inputs'>
-          <label>
-            Company:
-            <input type='text' name='company' />
-          </label>
-          <label>
-            Job Title:
-            <input type='text' name='jobTitle' />
-          </label>
-          <label>
-            City:
-            <input type='text' name='city' />
-          </label>
-          <div className='experienceDates'>
-            <label>
-              From:
-              <input type='date' name='from' />
-            </label>
-            <label>
-              To:
-              <input type='date' name='to' />
-            </label>
-            <label>
-              Present:
-              <input type='checkbox' name='present' />
-            </label>
-          </div>
-          <button className='btn addExperience'>Add</button>
-          <button className='btn deleteExperience del'>Delete</button>
-        </div>
+        {expItems.map((exp) => {
+          return (
+            <ExperienceInfo
+              key={exp.id}
+              id={exp.id}
+              company={exp.company}
+              jobTitle={exp.jobTitle}
+              city={exp.city}
+              from={exp.from}
+              to={exp.to}
+              isPresent={exp.isPresent}
+              handleExpInput={handleExpInput}
+              handleDelExp={handleDelExp}
+            />
+          );
+        })}
+        <AddBtn type='exp' handleAddExp={handleAddExp} />
       </div>
     );
   }

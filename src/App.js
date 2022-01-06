@@ -25,7 +25,17 @@ class App extends Component {
           isPresent: false,
         },
       ],
-      expItems: [],
+      expItems: [
+        {
+          id: uniqid(),
+          company: '',
+          jobTitle: '',
+          city: '',
+          from: '',
+          to: '',
+          isPresent: false,
+        },
+      ],
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -33,6 +43,9 @@ class App extends Component {
     this.handleAddExp = this.handleAddExp.bind(this);
     this.handleClickView = this.handleClickView.bind(this);
     this.handleEduInput = this.handleEduInput.bind(this);
+    this.handleDelEdu = this.handleDelEdu.bind(this);
+    this.handleExpInput = this.handleExpInput.bind(this);
+    this.handleDelExp = this.handleDelExp.bind(this);
   }
 
   handleInput(e) {
@@ -55,10 +68,70 @@ class App extends Component {
   }
 
   handleAddEdu(e) {
-    //
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      eduItems: [
+        ...this.state.eduItems,
+        {
+          id: uniqid(),
+          school: '',
+          degreeType: '',
+          major: '',
+          from: '',
+          to: '',
+          isPresent: false,
+        },
+      ],
+    });
   }
 
-  handleAddExp(e) {}
+  handleDelEdu(e) {
+    e.preventDefault();
+    const { id } = e.target;
+    this.setState({
+      ...this.state,
+      eduItems: this.state.eduItems.filter((el) => el.id !== id),
+    });
+  }
+
+  handleExpInput(e) {
+    const { name, value, id } = e.target;
+    this.setState({
+      ...this.state,
+      expItems: this.state.expItems.map((el) =>
+        el.id === id ? { ...el, [name]: value } : el
+      ),
+    });
+  }
+
+  handleAddExp(e) {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      expItems: [
+        ...this.state.expItems,
+        {
+          id: uniqid(),
+          company: '',
+          jobTitle: '',
+          city: '',
+          from: '',
+          to: '',
+          isPresent: false,
+        },
+      ],
+    });
+  }
+
+  handleDelExp(e) {
+    e.preventDefault();
+    const { id } = e.target;
+    this.setState({
+      ...this.state,
+      expItems: this.state.expItems.filter((el) => el.id !== id),
+    });
+  }
 
   handleClickView(e) {
     e.preventDefault();
@@ -71,7 +144,8 @@ class App extends Component {
   }
 
   render() {
-    const { name, email, phoneNumber, viewType, eduItems } = this.state;
+    const { name, email, phoneNumber, viewType, eduItems, expItems } =
+      this.state;
 
     return (
       <div className='App'>
@@ -86,7 +160,13 @@ class App extends Component {
             email={email}
             phoneNumber={phoneNumber}
             eduItems={eduItems}
+            expItems={expItems}
             handleEduInput={this.handleEduInput}
+            handleAddEdu={this.handleAddEdu}
+            handleDelEdu={this.handleDelEdu}
+            handleExpInput={this.handleExpInput}
+            handleAddExp={this.handleAddExp}
+            handleDelExp={this.handleDelExp}
           />
         ) : (
           <Preview name={name} email={email} phoneNumber={phoneNumber} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class EducationInfo extends Component {
+class ExperienceInfo extends Component {
   constructor(props) {
     super(props);
   }
@@ -8,45 +8,45 @@ class EducationInfo extends Component {
   render() {
     const {
       id,
-      school,
-      degreeType,
-      major,
+      company,
+      jobTitle,
+      city,
       from,
       to,
       isPresent,
-      handleEduInput,
-      handleDelEdu,
+      handleExpInput,
+      handleDelExp,
     } = this.props;
     return (
       <div className='inputs'>
         <label>
-          School:
+          Company:
           <input
             id={id}
             type='text'
-            name='school'
-            onChange={handleEduInput}
-            value={school}
+            name='company'
+            onChange={handleExpInput}
+            value={company}
           />
         </label>
         <label>
-          Degree Type:
+          Job Title:
           <input
             id={id}
             type='text'
-            name='degreeType'
-            onChange={handleEduInput}
-            value={degreeType}
+            name='jobTitle'
+            onChange={handleExpInput}
+            value={jobTitle}
           />
         </label>
         <label>
-          Major:
+          City:
           <input
             id={id}
             type='text'
-            name='major'
-            onChange={handleEduInput}
-            value={major}
+            name='city'
+            onChange={handleExpInput}
+            value={city}
           />
         </label>
         <div className='educationDates'>
@@ -56,7 +56,7 @@ class EducationInfo extends Component {
               id={id}
               type='date'
               name='from'
-              onChange={handleEduInput}
+              onChange={handleExpInput}
               value={from}
             />
           </label>
@@ -65,7 +65,7 @@ class EducationInfo extends Component {
             <input
               type='date'
               name='to'
-              onChange={handleEduInput}
+              onChange={handleExpInput}
               value={to}
               id={id}
             />
@@ -77,8 +77,8 @@ class EducationInfo extends Component {
         </div>
         <button
           id={id}
-          className='btn deleteEducation del'
-          onClick={handleDelEdu}
+          className='btn deleteExperience del'
+          onClick={handleDelExp}
         >
           Delete
         </button>
@@ -87,4 +87,4 @@ class EducationInfo extends Component {
   }
 }
 
-export default EducationInfo;
+export default ExperienceInfo;

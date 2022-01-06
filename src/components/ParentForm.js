@@ -8,8 +8,20 @@ class ParentForm extends Component {
     super(props);
   }
   render() {
-    const { handleInput, name, email, phoneNumber, eduItems, handleEduInput } =
-      this.props;
+    const {
+      handleInput,
+      name,
+      email,
+      phoneNumber,
+      eduItems,
+      expItems,
+      handleEduInput,
+      handleExpInput,
+      handleAddEdu,
+      handleDelEdu,
+      handleAddExp,
+      handleDelExp,
+    } = this.props;
     return (
       <form className='parentForm'>
         <General
@@ -18,8 +30,18 @@ class ParentForm extends Component {
           email={email}
           phoneNumber={phoneNumber}
         />
-        <Education eduItems={eduItems} handleEduInput={handleEduInput} />
-        <Experience />
+        <Education
+          eduItems={eduItems}
+          handleEduInput={handleEduInput}
+          handleAddEdu={handleAddEdu}
+          handleDelEdu={handleDelEdu}
+        />
+        <Experience
+          expItems={expItems}
+          handleExpInput={handleExpInput}
+          handleAddExp={handleAddExp}
+          handleDelExp={handleDelExp}
+        />
       </form>
     );
   }

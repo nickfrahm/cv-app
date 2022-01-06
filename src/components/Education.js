@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EducationInfo from './EducationInfo.js';
+import AddBtn from './AddBtn.js';
 
 class Education extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class Education extends Component {
   }
 
   render() {
-    const { eduItems, handleEduInput } = this.props;
+    const { eduItems, handleEduInput, handleAddEdu, handleDelEdu } = this.props;
 
     return (
       <div className='section education'>
@@ -24,9 +25,11 @@ class Education extends Component {
               to={edu.to}
               isPresent={edu.isPresent}
               handleEduInput={handleEduInput}
+              handleDelEdu={handleDelEdu}
             />
           );
         })}
+        <AddBtn type='edu' handleAddEdu={handleAddEdu} />
       </div>
     );
   }
