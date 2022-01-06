@@ -14,8 +14,10 @@ class ExperienceInfo extends Component {
       from,
       to,
       isPresent,
+      toType,
       handleExpInput,
       handleDelExp,
+      handleIsPresentExp,
     } = this.props;
     return (
       <div className='inputs'>
@@ -63,7 +65,7 @@ class ExperienceInfo extends Component {
           <label>
             To:
             <input
-              type='date'
+              type={toType}
               name='to'
               onChange={handleExpInput}
               value={to}
@@ -72,7 +74,13 @@ class ExperienceInfo extends Component {
           </label>
           <label>
             Present:
-            <input type='checkbox' name='present' value={isPresent} id={id} />
+            <input
+              type='checkbox'
+              name='present'
+              checked={isPresent}
+              id={id}
+              onChange={handleIsPresentExp}
+            />
           </label>
         </div>
         <button

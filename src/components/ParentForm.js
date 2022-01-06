@@ -21,6 +21,8 @@ class ParentForm extends Component {
       handleDelEdu,
       handleAddExp,
       handleDelExp,
+      handleIsPresentExp,
+      handleIsPresentEdu,
     } = this.props;
     return (
       <form className='parentForm'>
@@ -35,12 +37,14 @@ class ParentForm extends Component {
           handleEduInput={handleEduInput}
           handleAddEdu={handleAddEdu}
           handleDelEdu={handleDelEdu}
+          handleIsPresentEdu={handleIsPresentEdu}
         />
         <Experience
           expItems={expItems}
           handleExpInput={handleExpInput}
           handleAddExp={handleAddExp}
           handleDelExp={handleDelExp}
+          handleIsPresentExp={handleIsPresentExp}
         />
       </form>
     );

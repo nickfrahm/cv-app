@@ -8,7 +8,13 @@ class Experience extends Component {
   }
 
   render() {
-    const { expItems, handleExpInput, handleAddExp, handleDelExp } = this.props;
+    const {
+      expItems,
+      handleExpInput,
+      handleAddExp,
+      handleDelExp,
+      handleIsPresentExp,
+    } = this.props;
 
     return (
       <div className='section experience'>
@@ -24,8 +30,10 @@ class Experience extends Component {
               from={exp.from}
               to={exp.to}
               isPresent={exp.isPresent}
+              toType={exp.toType}
               handleExpInput={handleExpInput}
               handleDelExp={handleDelExp}
+              handleIsPresentExp={handleIsPresentExp}
             />
           );
         })}

@@ -14,8 +14,10 @@ class EducationInfo extends Component {
       from,
       to,
       isPresent,
+      toType,
       handleEduInput,
       handleDelEdu,
+      handleIsPresentEdu,
     } = this.props;
     return (
       <div className='inputs'>
@@ -63,7 +65,7 @@ class EducationInfo extends Component {
           <label>
             To:
             <input
-              type='date'
+              type={toType}
               name='to'
               onChange={handleEduInput}
               value={to}
@@ -72,7 +74,13 @@ class EducationInfo extends Component {
           </label>
           <label>
             Present:
-            <input type='checkbox' name='present' value={isPresent} id={id} />
+            <input
+              type='checkbox'
+              name='present'
+              checked={isPresent}
+              id={id}
+              onChange={handleIsPresentEdu}
+            />
           </label>
         </div>
         <button

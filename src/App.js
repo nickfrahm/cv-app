@@ -23,6 +23,7 @@ class App extends Component {
           from: '',
           to: '',
           isPresent: false,
+          toType: 'date',
         },
       ],
       expItems: [
@@ -34,6 +35,7 @@ class App extends Component {
           from: '',
           to: '',
           isPresent: false,
+          toType: 'date',
         },
       ],
     };
@@ -46,6 +48,8 @@ class App extends Component {
     this.handleDelEdu = this.handleDelEdu.bind(this);
     this.handleExpInput = this.handleExpInput.bind(this);
     this.handleDelExp = this.handleDelExp.bind(this);
+    this.handleIsPresentExp = this.handleIsPresentExp.bind(this);
+    this.handleIsPresentEdu = this.handleIsPresentEdu.bind(this);
   }
 
   handleInput(e) {
@@ -143,6 +147,58 @@ class App extends Component {
     }
   }
 
+  handleIsPresentExp(e) {
+    const { id } = e.target;
+
+    if (
+      this.state.expItems.filter((exp) => exp.id === id)[0].isPresent === false
+    ) {
+      this.setState({
+        ...this.state,
+        expItems: this.state.expItems.map((el) =>
+          el.id === id
+            ? { ...el, to: 'Current', toType: 'text', isPresent: true }
+            : el
+        ),
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        expItems: this.state.expItems.map((el) =>
+          el.id === id
+            ? { ...el, to: '', toType: 'date', isPresent: false }
+            : el
+        ),
+      });
+    }
+  }
+
+  handleIsPresentEdu(e) {
+    const { id } = e.target;
+
+    if (
+      this.state.eduItems.filter((edu) => edu.id === id)[0].isPresent === false
+    ) {
+      this.setState({
+        ...this.state,
+        eduItems: this.state.eduItems.map((el) =>
+          el.id === id
+            ? { ...el, to: 'Current', toType: 'text', isPresent: true }
+            : el
+        ),
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        eduItems: this.state.eduItems.map((el) =>
+          el.id === id
+            ? { ...el, to: '', toType: 'date', isPresent: false }
+            : el
+        ),
+      });
+    }
+  }
+
   render() {
     const { name, email, phoneNumber, viewType, eduItems, expItems } =
       this.state;
@@ -167,9 +223,17 @@ class App extends Component {
             handleExpInput={this.handleExpInput}
             handleAddExp={this.handleAddExp}
             handleDelExp={this.handleDelExp}
+            handleIsPresentExp={this.handleIsPresentExp}
+            handleIsPresentEdu={this.handleIsPresentEdu}
           />
         ) : (
-          <Preview name={name} email={email} phoneNumber={phoneNumber} />
+          <Preview
+            name={name}
+            email={email}
+            phoneNumber={phoneNumber}
+            expItems={expItems}
+            eduItems={eduItems}
+          />
         )}
       </div>
     );
