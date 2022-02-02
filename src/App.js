@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import DisplayButton from './components/DisplayButton.js';
 import Header from './components/Header.js';
 import ParentForm from './components/ParentForm.js';
@@ -6,74 +6,73 @@ import Preview from './components/Preview.js';
 import uniqid from 'uniqid';
 import './styles/App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      viewType: 'edit',
-      name: '',
-      email: '',
-      phoneNumber: '',
-      eduItems: [
-        {
-          id: uniqid(),
-          school: '',
-          degreeType: '',
-          major: '',
-          from: '',
-          to: '',
-          isPresent: false,
-          toType: 'date',
-        },
-      ],
-      expItems: [
-        {
-          id: uniqid(),
-          company: '',
-          jobTitle: '',
-          city: '',
-          from: '',
-          to: '',
-          isPresent: false,
-          toType: 'date',
-        },
-      ],
-    };
+const App = () => {
+  const [viewType, setViewType] = useState('edit');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [eduItems, setEduItems] = useState([
+    {
+      id: uniqid(),
+      school: '',
+      degreeType: '',
+      major: '',
+      from: '',
+      to: '',
+      isPresent: false,
+      toType: 'date',
+    },
+  ]);
+  const [expItems, setExpItems] = useState([
+    {
+      id: uniqid(),
+      company: '',
+      jobTitle: '',
+      city: '',
+      from: '',
+      to: '',
+      isPresent: false,
+      toType: 'date',
+    },
+  ]);
 
-    this.handleInput = this.handleInput.bind(this);
-    this.handleAddEdu = this.handleAddEdu.bind(this);
-    this.handleAddExp = this.handleAddExp.bind(this);
-    this.handleClickView = this.handleClickView.bind(this);
-    this.handleEduInput = this.handleEduInput.bind(this);
-    this.handleDelEdu = this.handleDelEdu.bind(this);
-    this.handleExpInput = this.handleExpInput.bind(this);
-    this.handleDelExp = this.handleDelExp.bind(this);
-    this.handleIsPresentExp = this.handleIsPresentExp.bind(this);
-    this.handleIsPresentEdu = this.handleIsPresentEdu.bind(this);
-  }
-
-  handleInput(e) {
+  const handleInput = (e) => {
     const { name, value } = e.target;
 
-    this.setState({
+    /*this.setState({
       ...this.state,
       [name]: value,
-    });
-  }
+    });*/
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'phoneNumber':
+        setPhoneNumber(value);
+        break;
+    }
+  };
 
-  handleEduInput(e) {
+  const handleEduInput = (e) => {
     const { name, value, id } = e.target;
-    this.setState({
+    /*this.setState({
       ...this.state,
       eduItems: this.state.eduItems.map((el) =>
         el.id === id ? { ...el, [name]: value } : el
       ),
-    });
-  }
+    });*/
 
-  handleAddEdu(e) {
+    setEduItems(
+      eduItems.map((el) => (el.id === id ? { ...el, [name]: value } : el))
+    );
+  };
+
+  const handleAddEdu = (e) => {
     e.preventDefault();
-    this.setState({
+    /*this.setState({
       ...this.state,
       eduItems: [
         ...this.state.eduItems,
@@ -87,31 +86,50 @@ class App extends Component {
           isPresent: false,
         },
       ],
-    });
-  }
+    });*/
 
-  handleDelEdu(e) {
+    setEduItems([
+      ...eduItems,
+      {
+        id: uniqid(),
+        school: '',
+        degreeType: '',
+        major: '',
+        from: '',
+        to: '',
+        isPresent: false,
+      },
+    ]);
+  };
+
+  const handleDelEdu = (e) => {
     e.preventDefault();
     const { id } = e.target;
-    this.setState({
+    /*this.setState({
       ...this.state,
       eduItems: this.state.eduItems.filter((el) => el.id !== id),
-    });
-  }
+    });*/
 
-  handleExpInput(e) {
+    setEduItems(eduItems.filter((el) => el.id !== id));
+  };
+
+  const handleExpInput = (e) => {
     const { name, value, id } = e.target;
-    this.setState({
+    /*this.setState({
       ...this.state,
       expItems: this.state.expItems.map((el) =>
         el.id === id ? { ...el, [name]: value } : el
       ),
-    });
-  }
+    });*/
 
-  handleAddExp(e) {
+    setExpItems(
+      expItems.map((el) => (el.id === id ? { ...el, [name]: value } : el))
+    );
+  };
+
+  const handleAddExp = (e) => {
     e.preventDefault();
-    this.setState({
+    /*this.setState({
       ...this.state,
       expItems: [
         ...this.state.expItems,
@@ -125,119 +143,150 @@ class App extends Component {
           isPresent: false,
         },
       ],
-    });
-  }
+    });*/
 
-  handleDelExp(e) {
+    setExpItems([
+      ...expItems,
+      {
+        id: uniqid(),
+        company: '',
+        jobTitle: '',
+        city: '',
+        from: '',
+        to: '',
+        isPresent: false,
+      },
+    ]);
+  };
+
+  const handleDelExp = (e) => {
     e.preventDefault();
     const { id } = e.target;
-    this.setState({
+    /*this.setState({
       ...this.state,
       expItems: this.state.expItems.filter((el) => el.id !== id),
-    });
-  }
+    });*/
 
-  handleClickView(e) {
+    setExpItems(expItems.filter((el) => el.id !== id));
+  };
+
+  const handleClickView = (e) => {
     e.preventDefault();
 
-    if (this.state.viewType === 'edit') {
-      this.setState({ ...this.state, viewType: 'preview' });
+    if (viewType === 'edit') {
+      //this.setState({ ...this.state, viewType: 'preview' });
+      setViewType('preview');
     } else {
-      this.setState({ ...this.state, viewType: 'edit' });
+      //this.setState({ ...this.state, viewType: 'edit' });
+      setViewType('edit');
     }
-  }
+  };
 
-  handleIsPresentExp(e) {
+  const handleIsPresentExp = (e) => {
     const { id } = e.target;
 
     if (
-      this.state.expItems.filter((exp) => exp.id === id)[0].isPresent === false
+      //this.state.expItems.filter((exp) => exp.id === id)[0].isPresent === false
+      expItems.filter((exp) => exp.id === id)[0].isPresent === false
     ) {
-      this.setState({
+      /*this.setState({
         ...this.state,
         expItems: this.state.expItems.map((el) =>
           el.id === id
             ? { ...el, to: 'Current', toType: 'text', isPresent: true }
             : el
         ),
-      });
+      });*/
+      setExpItems(
+        expItems.map((el) =>
+          el.id === id
+            ? { ...el, to: 'Current', toType: 'text', isPresent: true }
+            : el
+        )
+      );
     } else {
-      this.setState({
+      /*this.setState({
         ...this.state,
         expItems: this.state.expItems.map((el) =>
           el.id === id
             ? { ...el, to: '', toType: 'date', isPresent: false }
             : el
         ),
-      });
+      });*/
+      setExpItems(
+        expItems.map((el) =>
+          el.id === id
+            ? { ...el, to: '', toType: 'date', isPresent: false }
+            : el
+        )
+      );
     }
-  }
+  };
 
-  handleIsPresentEdu(e) {
+  const handleIsPresentEdu = (e) => {
     const { id } = e.target;
 
-    if (
-      this.state.eduItems.filter((edu) => edu.id === id)[0].isPresent === false
-    ) {
-      this.setState({
-        ...this.state,
-        eduItems: this.state.eduItems.map((el) =>
+    if (eduItems.filter((edu) => edu.id === id)[0].isPresent === false) {
+      setEduItems(
+        eduItems.map((el) =>
           el.id === id
             ? { ...el, to: 'Current', toType: 'text', isPresent: true }
             : el
-        ),
-      });
+        )
+      );
     } else {
-      this.setState({
+      /*this.setState({
         ...this.state,
         eduItems: this.state.eduItems.map((el) =>
           el.id === id
             ? { ...el, to: '', toType: 'date', isPresent: false }
             : el
         ),
-      });
+      });*/
+      setEduItems([
+        eduItems.map((el) =>
+          el.id === id
+            ? { ...el, to: '', toType: 'date', isPresent: false }
+            : el
+        ),
+      ]);
     }
-  }
+  };
 
-  render() {
-    const { name, email, phoneNumber, viewType, eduItems, expItems } =
-      this.state;
+  return (
+    <div className='App'>
+      <Header />
 
-    return (
-      <div className='App'>
-        <Header />
+      <DisplayButton handleClickView={handleClickView} type={viewType} />
 
-        <DisplayButton handleClickView={this.handleClickView} type={viewType} />
-
-        {viewType === 'edit' ? (
-          <ParentForm
-            handleInput={this.handleInput}
-            name={name}
-            email={email}
-            phoneNumber={phoneNumber}
-            eduItems={eduItems}
-            expItems={expItems}
-            handleEduInput={this.handleEduInput}
-            handleAddEdu={this.handleAddEdu}
-            handleDelEdu={this.handleDelEdu}
-            handleExpInput={this.handleExpInput}
-            handleAddExp={this.handleAddExp}
-            handleDelExp={this.handleDelExp}
-            handleIsPresentExp={this.handleIsPresentExp}
-            handleIsPresentEdu={this.handleIsPresentEdu}
-          />
-        ) : (
-          <Preview
-            name={name}
-            email={email}
-            phoneNumber={phoneNumber}
-            expItems={expItems}
-            eduItems={eduItems}
-          />
-        )}
-      </div>
-    );
-  }
-}
+      {viewType === 'edit' ? (
+        <ParentForm
+          handleInput={handleInput}
+          name={name}
+          email={email}
+          phoneNumber={phoneNumber}
+          eduItems={eduItems}
+          expItems={expItems}
+          handleEduInput={handleEduInput}
+          handleAddEdu={handleAddEdu}
+          handleDelEdu={handleDelEdu}
+          handleExpInput={handleExpInput}
+          handleAddExp={handleAddExp}
+          handleDelExp={handleDelExp}
+          handleIsPresentExp={handleIsPresentExp}
+          handleIsPresentEdu={handleIsPresentEdu}
+        />
+      ) : (
+        <Preview
+          name={name}
+          email={email}
+          phoneNumber={phoneNumber}
+          expItems={expItems}
+          eduItems={eduItems}
+        />
+      )}
+    </div>
+  );
+};
 
 export default App;
